@@ -1,6 +1,6 @@
 {
   "name": "supermodeler",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Standalone model creation, mapping and validation library",
   "main": "lib/index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "Den Williams",
   "license": "MIT",
   "dependencies": {
+    "q": "^1.2.0",
     "validate.js": "^0.5.0"
   }
 }

@@ -2,6 +2,7 @@
 // 'use strict';
 
 var modeler = require('../lib').create();
+var Q = require('q');
 
 // alternatively:
 // var Supermodeler = new require('../lib').Supermodeler;
@@ -130,3 +131,13 @@ console.log(apimodel);
 console.log('save', typeof dbmodel.save);
 console.log('print', typeof dbmodel.print);
 console.log('-------');
+
+var dommodels = modeler.map([dbmodel, dbuser], 'DbUser', 'DomainUser');
+console.log(dommodels);
+
+modeler.map(Q.resolve(dbuser), 'DbUser', 'DomainUser')
+.then(function(qmodel) {
+  console.log(qmodel);
+  console.log(qmodel.$type);
+});
+

@@ -4,7 +4,7 @@
 
 There are a lot of NPM modules out there to provide models for database persistence, ORMs, and the like, however there seems to be a shortage of anything targeting more a more generic approach to models.
 
-Supermodel primarily targets the ability to create domain, or business logic layer models.
+Supermodeler primarily targets the ability to create domain, or business logic layer models.
 
 In addition it provides easy mapping between model types, and validation of models.
 
@@ -37,8 +37,13 @@ In addition it provides easy mapping between model types, and validation of mode
 
 ## Mapping
 
+`supermodeler.map(source, sourceType, targetType)`
 
+Source can be either:
 
+- An object of type `sourceType`, in which case map() will return an object of type `targetType`.
+- An array of type `sourceType`, in which case map() will return an array of type `targetType`.
+- A promise that resolves to either an array or an object as above, in which case map() will return a promise (specifically a Q promise) that resolves with the results mapped to `targetType`.
 
 ## Example:
 
