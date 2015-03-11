@@ -1,0 +1,14 @@
+{
+  "name": "supermodeler",
+  "version": "0.1.0",
+  "description": "Standalone model creation, mapping and validation library",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Den Williams",
+  "license": "MIT",
+  "dependencies": {
+    "validate.js": "^0.5.0"
+  }
+}

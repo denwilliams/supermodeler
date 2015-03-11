@@ -1,54 +1,7 @@
-# Supermodeler
-
-*Node.js Library for creating models, mapping between types and validating model instances.*
-
-There are a lot of NPM modules out there to provide models for database persistence, ORMs, and the like, however there seems to be a shortage of anything targeting more a more generic approach to models.
-
-Supermodel primarily targets the ability to create domain, or business logic layer models.
-
-In addition it provides easy mapping between model types, and validation of models.
-
-
-
-
-
-
-## Schema
-
-### Properties
-
-- *name* - The property or field name.
-- *readOnly* - The properties value will not be able to be modified after constructor complete.
-- *private* - The property will not be exposed in enumeration, and thus will not show up in serialization or output.
-- *type* - Defines this property as being of a sub-type.
-- *default* - Default value if none supplied
-- *get* - Allows for the definition of a getter
-- *validation* - A validate.js validation object
-
-### Methods
-
-### Validation Attributes
-
-- **validate** - if true then .validate() will be called on the module before completion of constructor. 
-- **validation** - if defined then allows for a customer validator method. Note: *this* will equal the instance on the validation method.
-
-
-
-
-## Mapping
-
-
-
-
-## Example:
-
-See the demo/user.js file for a running version of the following:
-
-```js
 // uncomment use strict to throw errors, otherwise things will fail silently
 // 'use strict';
 
-var modeler = require('supermodler').create();
+var modeler = require('../lib').create();
 
 // alternatively:
 // var Supermodeler = new require('../lib').Supermodeler;
@@ -110,6 +63,7 @@ modeler.defineModel('ApiUserIds', {
 
 
 
+
 // we can define maps between model types.
 // NOTE: the source type does not need to exist as a model, but the target type does
 modeler.defineMap('DbUser', 'DomainUser', {
@@ -122,7 +76,7 @@ modeler.defineMap('DbUser', 'DomainUser', {
 });
 
 modeler.defineMap('DomainUser', 'ApiUser', {
-  displayName: function(src) { return src.firstName + ' ' + src.lastName; }, // use functions for complex maps
+  displayName: function(src) { return src.firstName + ' ' + src.lastName; },
   'ids.user': 'userId', // we can unflatten objects
   'ids.group': 'groupId'
 });
@@ -156,6 +110,7 @@ var dbuser = new DbUser({
 });
 
 
+
 // NOTE: user_id is read only, so we can't alter it's value after construction
 //... the following will fail
 dbmodel.user_id = '9999999';
@@ -175,4 +130,3 @@ console.log(apimodel);
 console.log('save', typeof dbmodel.save);
 console.log('print', typeof dbmodel.print);
 console.log('-------');
-```
