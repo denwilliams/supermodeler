@@ -45,6 +45,36 @@ Source can be either:
 - An array of type `sourceType`, in which case map() will return an array of type `targetType`.
 - A promise that resolves to either an array or an object as above, in which case map() will return a promise (specifically a Q promise) that resolves with the results mapped to `targetType`.
 
+## Validation
+
+Validation rules are defined on the schema as a `validate` property. See validate.js for available validation rules.
+
+```js
+properties: [
+  {name: 'name', validate:{presence:true}}
+]
+```
+
+Each model instance has a `$validate` method on it that can be called to validate the current state of the instance.
+
+```js
+var user = supermodeler.create('User');
+user.$validate();
+```
+
+Also, if the schema has `validate=true` set, then this method will be called in the constructor.
+```js
+supermodeler.defineModel('User', {properties:['name'], validate:true})
+```
+
+Finally, you can validate an anonymous object against the validation rules by calling `$validate` on the Contructor.
+
+```js
+var user = {name: 'test'};
+var User = supermodeler.get('User');
+User.$validate(user);
+```
+
 ## Example:
 
 See the demo/user.js file for a running version of the following:
