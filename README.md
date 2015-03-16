@@ -12,10 +12,25 @@ In addition it provides easy mapping between model types, and validation of mode
 
 
 
+## Defining Models
 
-## Schema
+```js
+var definition = {
+  properties: [
+    'firstName',
+    'lastName'
+  ],
+  methods: [
+    getFullName: function() { return this.firstName + ' ' + this.lastName; }
+  ]
+  validate: true
+};
+supermodeler.defineModel('User', definition);
+```
 
-### Properties
+### Schema
+
+#### "properties"
 
 - *name* - The property or field name.
 - *readOnly* - The properties value will not be able to be modified after constructor complete.
@@ -25,12 +40,39 @@ In addition it provides easy mapping between model types, and validation of mode
 - *get* - Allows for the definition of a getter
 - *validation* - A validate.js validation object
 
-### Methods
-
-### Validation Attributes
+#### Validation Attributes
 
 - **validate** - if true then .validate() will be called on the module before completion of constructor. 
 - **validation** - if defined then allows for a customer validator method. Note: *this* will equal the instance on the validation method.
+
+
+#### "methods"
+
+
+
+
+## Creating Instances
+
+```js
+var instance = supermodeler.create('User');
+console.log(instance);
+// {firstName: undefined, lastName: undefined}
+
+instance = supermodeler.create('User', {firstName:'John', lastName:'Smith'});
+console.log(instance);
+// {firstName: "John", lastName: "Smith"}
+
+instance = supermodeler.create('User', {firstName:'John'});
+console.log(instance);
+// {firstName: "John", lastName: undefined}
+
+// Properties not defined on models are either:
+// a) Ignored
+// b) Throw an error if 'use strict' is defined
+instance = supermodeler.create('User', {firstName:'John', gender:'Male'});
+console.log(instance);
+// {firstName: "John", lastName: undefined}
+```
 
 
 
