@@ -11,5 +11,18 @@
   "dependencies": {
     "q": "^1.2.0",
     "validate.js": "^0.5.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denwilliams/supermodeler.git"
+  },
+  "keywords": [
+    "domain",
+    "model"
+  ],
+  "bugs": {
+    "url": "https://github.com/denwilliams/supermodeler/issues"
+  },
+  "homepage": "https://github.com/denwilliams/supermodeler#readme"
 }
