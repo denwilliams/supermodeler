@@ -1,6 +1,6 @@
 {
   "name": "supermodeler",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Standalone model creation, mapping and validation library",
   "main": "lib/index.js",
   "scripts": {
